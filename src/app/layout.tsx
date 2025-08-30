@@ -44,7 +44,7 @@ export default async function RootLayout({
   let siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'MoonTV';
   let announcement =
     process.env.ANNOUNCEMENT ||
-    '本网站仅提供影视信息搜索服务，所有内容均来自第三方网站。本站不存储任何视频资源，不对任何内容的准确性、合法性、完整性负责。';
+    '免責聲明：本站僅為視頻搜索工具，不存儲、上傳或分發任何影片內容。所有影片均來自第三方API。僅供學習用途，如有侵權，請不要聯繫我。';
 
   let doubanProxyType = process.env.NEXT_PUBLIC_DOUBAN_PROXY_TYPE || 'cmliussss-cdn-tencent';
   let doubanProxy = process.env.NEXT_PUBLIC_DOUBAN_PROXY || '';
