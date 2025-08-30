@@ -2,7 +2,7 @@ import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
 const config: Config = {
-  darkMode: 'class', // 保留類基暗色模式
+  darkMode: 'class',
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -16,30 +16,22 @@ const config: Config = {
         },
       },
       fontFamily: {
-        primary: ['Poppins', 'Inter', ...defaultTheme.fontFamily.sans], // 替換為 Poppins 作為主字體
+        primary: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         primary: {
-          50: '#eef7ff', // 淺藍背景
-          100: '#d1e6ff',
-          200: '#a3ceff',
-          300: '#75b6ff',
-          400: '#479eff',
-          500: '#1976d2', // 主藍色，取代綠色
-          600: '#155fa9',
-          700: '#114880',
-          800: '#0d3557',
-          900: '#09243e',
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
+          500: '#0ea5e9',
+          600: '#0284c7',
+          700: '#0369a1',
+          800: '#075985',
+          900: '#0c4a6e',
         },
-        secondary: {
-          500: '#f59e0b', // 橙色作為點綴
-          600: '#c77e09',
-        },
-        accent: {
-          500: '#6b7280', // 灰色作為輔助
-        },
-        dark: '#1a202c', // 深灰暗模式
-        light: '#ffffff', // 亮模式背景
+        dark: '#222222',
       },
       keyframes: {
         flicker: {
@@ -54,8 +46,12 @@ const config: Config = {
           },
         },
         shimmer: {
-          '0%': { backgroundPosition: '-700px 0' },
-          '100%': { backgroundPosition: '700px 0' },
+          '0%': {
+            backgroundPosition: '-700px 0',
+          },
+          '100%': {
+            backgroundPosition: '700px 0',
+          },
         },
         fadeIn: {
           '0%': { opacity: '0' },
@@ -75,7 +71,7 @@ const config: Config = {
         },
       },
       animation: {
-        flicker: 'flicker 2s linear infinite', // 減慢閃爍頻率，減少刺眼
+        flicker: 'flicker 3s linear infinite',
         shimmer: 'shimmer 1.3s linear infinite',
         'fade-in': 'fadeIn 0.3s ease-in-out',
         'slide-up': 'slideUp 0.3s ease-in-out',
@@ -86,14 +82,10 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'hero-pattern': 'linear-gradient(to right, #1976d2, #f59e0b)', // 新的英雄圖背景
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'), // 保留表單樣式
-    require('@tailwindcss/typography'), // 添加排版插件，優化文本
-  ],
+  plugins: [require('@tailwindcss/forms')],
 } satisfies Config;
 
 export default config;
