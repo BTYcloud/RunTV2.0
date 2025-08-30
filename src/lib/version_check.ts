@@ -13,7 +13,7 @@ export enum UpdateStatus {
 
 // 远程版本检查URL配置
 const VERSION_CHECK_URLS = [
-  'https://raw.githubusercontent.com/MoonTechLab/LunaTV/main/VERSION.txt',
+  'https://raw.githubusercontent.com/BTYcloud/RunTV2.0/main/VERSION.txt',
 ];
 
 /**
@@ -37,7 +37,7 @@ export async function checkForUpdates(): Promise<UpdateStatus> {
     // 如果两个URL都失败，返回获取失败状态
     return UpdateStatus.FETCH_FAILED;
   } catch (error) {
-    console.error('版本检查失败:', error);
+    console.error('版本檢查失敗:', error);
     return UpdateStatus.FETCH_FAILED;
   }
 }
