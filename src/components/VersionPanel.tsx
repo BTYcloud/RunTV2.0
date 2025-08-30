@@ -81,7 +81,7 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
   const fetchRemoteChangelog = async () => {
     try {
       const response = await fetch(
-        'https://raw.githubusercontent.com/MoonTechLab/LunaTV/main/CHANGELOG'
+        'https://raw.githubusercontent.com/BTYcloud/RunTV2.0/main/CHANGELOG'
       );
       if (response.ok) {
         const content = await response.text();
@@ -363,13 +363,13 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
                     </div>
                   </div>
                   <a
-                    href='https://github.com/MoonTechLab/LunaTV'
+                    href='https://www.msf.hk/zh-hant/donate/general?type=one-off'
                     target='_blank'
                     rel='noopener noreferrer'
                     className='inline-flex items-center justify-center gap-2 px-3 py-2 bg-yellow-600 hover:bg-yellow-700 text-white text-xs sm:text-sm rounded-lg transition-colors shadow-sm w-full'
                   >
                     <Download className='w-3 h-3 sm:w-4 sm:h-4' />
-                    前往仓库
+                    給我打賞
                   </a>
                 </div>
               </div>
@@ -385,7 +385,7 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
                     </div>
                     <div className='min-w-0 flex-1'>
                       <h4 className='text-sm sm:text-base font-semibold text-green-800 dark:text-green-200'>
-                        当前为最新版本
+                        當前是最新版本
                       </h4>
                       <p className='text-xs sm:text-sm text-green-700 dark:text-green-300 break-all'>
                         已是最新版本 v{CURRENT_VERSION}
@@ -393,13 +393,13 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
                     </div>
                   </div>
                   <a
-                    href='https://github.com/MoonTechLab/LunaTV'
+                    href='https://www.msf.hk/zh-hant/donate/general?type=one-off'
                     target='_blank'
                     rel='noopener noreferrer'
                     className='inline-flex items-center justify-center gap-2 px-3 py-2 bg-green-600 hover:bg-green-700 text-white text-xs sm:text-sm rounded-lg transition-colors shadow-sm w-full'
                   >
                     <CheckCircle className='w-3 h-3 sm:w-4 sm:h-4' />
-                    前往仓库
+                    給我打賞
                   </a>
                 </div>
               </div>
@@ -420,12 +420,12 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
                     {showRemoteContent ? (
                       <>
                         <ChevronUp className='w-4 h-4' />
-                        收起
+                        滾蛋
                       </>
                     ) : (
                       <>
                         <ChevronDown className='w-4 h-4' />
-                        查看更新内容
+                        查看肝爆歷史
                       </>
                     )}
                   </button>
@@ -489,7 +489,7 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
                             <div className='mb-3'>
                               <h5 className='text-sm font-medium text-blue-600 dark:text-blue-400 mb-2 flex items-center gap-1'>
                                 <RefreshCw className='w-4 h-4' />
-                                功能改进
+                                功能改進
                               </h5>
                               <ul className='space-y-1'>
                                 {entry.changed.map((item, itemIndex) => (
@@ -509,7 +509,7 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
                             <div>
                               <h5 className='text-sm font-medium text-purple-700 dark:text-purple-400 mb-2 flex items-center gap-1'>
                                 <Bug className='w-4 h-4' />
-                                问题修复
+                                修復錯誤
                               </h5>
                               <ul className='space-y-1'>
                                 {entry.fixed.map((item, itemIndex) => (
@@ -534,7 +534,7 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
             {/* 变更日志标题 */}
             <div className='border-b border-gray-200 dark:border-gray-700 pb-4'>
               <h4 className='text-lg font-semibold text-gray-800 dark:text-gray-200 pb-3 sm:pb-4'>
-                变更日志
+                肝帝日誌
               </h4>
 
               <div className='space-y-4'>
