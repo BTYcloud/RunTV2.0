@@ -57,7 +57,7 @@ function LivePageClient() {
   const [loadingStage, setLoadingStage] = useState<
     'loading' | 'fetching' | 'ready'
   >('loading');
-  const [loadingMessage, setLoadingMessage] = useState('正在加载直播源...');
+  const [loadingMessage, setLoadingMessage] = useState('正在加載...');
   const [error, setError] = useState<string | null>(null);
 
   const searchParams = useSearchParams();
@@ -679,13 +679,13 @@ function LivePageClient() {
           await deleteFavorite(`live_${currentSourceRef.current.key}`, `live_${currentChannelRef.current.id}`);
         }
       } catch (err) {
-        console.error('收藏操作失败:', err);
+        console.error('收藏失敗:', err);
         // 如果操作失败，回滚状态
         setFavorited(currentFavorited);
         favoritedRef.current = currentFavorited;
       }
     } catch (err) {
-      console.error('切换收藏失败:', err);
+      console.error('切換收藏失敗:', err);
     }
   };
 
@@ -703,7 +703,7 @@ function LivePageClient() {
         setFavorited(fav);
         favoritedRef.current = fav;
       } catch (err) {
-        console.error('检查收藏状态失败:', err);
+        console.error('檢查收藏狀態失敗:', err);
       }
     })();
   }, [currentSource, currentChannel]);
@@ -870,7 +870,7 @@ function LivePageClient() {
       const precheckUrl = `/api/live/precheck?url=${encodeURIComponent(videoUrl)}&moontv-source=${currentSourceRef.current?.key || ''}`;
       const precheckResponse = await fetch(precheckUrl);
       if (!precheckResponse.ok) {
-        console.error('预检查失败:', precheckResponse.statusText);
+        console.error('預檢查失敗:', precheckResponse.statusText);
         return;
       }
       const precheckResult = await precheckResponse.json();
@@ -961,7 +961,7 @@ function LivePageClient() {
         });
 
         artPlayerRef.current.on('error', (err: any) => {
-          console.error('播放器错误:', err);
+          console.error('播放器boomer:', err);
         });
 
         if (artPlayerRef.current?.video) {
@@ -972,7 +972,7 @@ function LivePageClient() {
         }
 
       } catch (err) {
-        console.error('创建播放器失败:', err);
+        console.error('無法創建播放器:', err);
         // 不设置错误，只记录日志
       }
     }
@@ -1204,7 +1204,7 @@ function LivePageClient() {
               }
               className='group relative flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-white/80 hover:bg-white dark:bg-gray-800/80 dark:hover:bg-gray-800 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 shadow-sm hover:shadow-md transition-all duration-200'
               title={
-                isChannelListCollapsed ? '显示频道列表' : '隐藏频道列表'
+                isChannelListCollapsed ? '顯示頻道列表' : '隱藏頻道列表'
               }
             >
               <svg
@@ -1222,7 +1222,7 @@ function LivePageClient() {
                 />
               </svg>
               <span className='text-xs font-medium text-gray-600 dark:text-gray-300'>
-                {isChannelListCollapsed ? '显示' : '隐藏'}
+                {isChannelListCollapsed ? '顯示' : '隱藏'}
               </span>
 
               {/* 精致的状态指示点 */}
@@ -1259,18 +1259,18 @@ function LivePageClient() {
                       </div>
                       <div className='space-y-4'>
                         <h3 className='text-xl font-semibold text-white'>
-                          暂不支持的直播流类型
+                          你的直播流類型我不會弄啊
                         </h3>
                         <div className='bg-orange-500/20 border border-orange-500/30 rounded-lg p-4'>
                           <p className='text-orange-300 font-medium'>
-                            当前频道直播流类型：<span className='text-white font-bold'>{unsupportedType.toUpperCase()}</span>
+                            當前頻道直播流類型：<span className='text-white font-bold'>{unsupportedType.toUpperCase()}</span>
                           </p>
                           <p className='text-sm text-orange-200 mt-2'>
-                            目前仅支持 M3U8 格式的直播流
+                            目前僅支持 M3U8 直播流
                           </p>
                         </div>
                         <p className='text-sm text-gray-300'>
-                          请尝试其他频道
+                          請嘗試其他頻道
                         </p>
                       </div>
                     </div>
@@ -1289,7 +1289,7 @@ function LivePageClient() {
                       </div>
                       <div className='space-y-2'>
                         <p className='text-xl font-semibold text-white animate-pulse'>
-                          🔄 IPTV 加载中...
+                          🔄 IPTV 加載中...
                         </p>
                       </div>
                     </div>
@@ -1315,7 +1315,7 @@ function LivePageClient() {
                       }
                     `.trim()}
                   >
-                    频道
+                    頻道
                   </div>
                   <div
                     onClick={() => setActiveTab('sources')}
@@ -1339,7 +1339,7 @@ function LivePageClient() {
                       {isSwitchingSource && (
                         <div className='flex items-center gap-2 text-sm text-amber-600 dark:text-amber-400'>
                           <div className='w-2 h-2 bg-amber-500 rounded-full animate-pulse'></div>
-                          切换直播源中...
+                          切換直播源中...
                         </div>
                       )}
 
@@ -1450,10 +1450,10 @@ function LivePageClient() {
                             <Tv className='w-8 h-8 text-gray-400 dark:text-gray-600' />
                           </div>
                           <p className='text-gray-500 dark:text-gray-400 font-medium'>
-                            暂无可用频道
+                            沒有可用頻道
                           </p>
                           <p className='text-sm text-gray-400 dark:text-gray-500 mt-1'>
-                            请选择其他直播源或稍后再试
+                            請選擇其他源或者刷新
                           </p>
                         </div>
                       )}
@@ -1506,10 +1506,10 @@ function LivePageClient() {
                             <Radio className='w-8 h-8 text-gray-400 dark:text-gray-600' />
                           </div>
                           <p className='text-gray-500 dark:text-gray-400 font-medium'>
-                            暂无可用直播源
+                            沒有可用直播源
                           </p>
                           <p className='text-sm text-gray-400 dark:text-gray-500 mt-1'>
-                            请检查网络连接或联系管理员添加直播源
+                            請檢查網絡或刷新嘗試（其實是我壓根沒弄直播源嘿嘿 氣死你）
                           </p>
                         </div>
                       )}
