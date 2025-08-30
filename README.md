@@ -1,10 +1,10 @@
-# MoonTV
+# RunTV2.0
 
 <div align="center">
   <img src="public/logo.png" alt="MoonTV Logo" width="120">
 </div>
 
-> 🎬 **MoonTV** 是一个开箱即用的、跨平台的影视聚合播放器。它基于 **Next.js 14** + **Tailwind&nbsp;CSS** + **TypeScript** 构建，支持多资源搜索、在线播放、收藏同步、播放记录、云端存储，让你可以随时随地畅享海量免费影视内容。
+> 🎬 **RunTV** 是一个开箱即用的、跨平台的影视聚合播放器。它基于 **Next.js 14** + **Tailwind&nbsp;CSS** + **TypeScript** 构建，支持多资源搜索、在线播放、收藏同步、播放记录、云端存储，让你可以随时随地畅享海量免费影视内容。
 
 <div align="center">
 
@@ -28,7 +28,6 @@
 - 🌗 **响应式布局**：桌面侧边栏 + 移动底部导航，自适应各种屏幕尺寸。
 - 👿 **智能去广告**：自动跳过视频中的切片广告（实验性）。
 
-### 注意：部署后项目为空壳项目，无内置播放源和直播源，需要自行收集
 
 <details>
   <summary>点击查看项目截图</summary>
@@ -52,112 +51,9 @@
 - [License](#license)
 - [致谢](#致谢)
 
-## 技术栈
 
-| 分类      | 主要依赖                                                                                              |
-| --------- | ----------------------------------------------------------------------------------------------------- |
-| 前端框架  | [Next.js 14](https://nextjs.org/) · App Router                                                        |
-| UI & 样式 | [Tailwind&nbsp;CSS 3](https://tailwindcss.com/)                                                       |
-| 语言      | TypeScript 4                                                                                          |
-| 播放器    | [ArtPlayer](https://github.com/zhw2590582/ArtPlayer) · [HLS.js](https://github.com/video-dev/hls.js/) |
-| 代码质量  | ESLint · Prettier · Jest                                                                              |
-| 部署      | Docker                                                                    |
-
-## 部署
-
-本项目**仅支持 Docker 或其他基于 Docker 的平台** 部署。
-
-### Kvrocks 存储（推荐）
-
-```yml
-services:
-  moontv-core:
-    image: ghcr.io/moontechlab/lunatv:latest
-    container_name: moontv-core
-    restart: on-failure
-    ports:
-      - '3000:3000'
-    environment:
-      - USERNAME=admin
-      - PASSWORD=admin_password
-      - NEXT_PUBLIC_STORAGE_TYPE=kvrocks
-      - KVROCKS_URL=redis://moontv-kvrocks:6666
-    networks:
-      - moontv-network
-    depends_on:
-      - moontv-kvrocks
-  moontv-kvrocks:
-    image: apache/kvrocks
-    container_name: moontv-kvrocks
-    restart: unless-stopped
-    volumes:
-      - kvrocks-data:/var/lib/kvrocks
-    networks:
-      - moontv-network
-networks:
-  moontv-network:
-    driver: bridge
-volumes:
-  kvrocks-data:
-```
-
-### Redis 存储（有一定的丢数据风险）
-
-```yml
-services:
-  moontv-core:
-    image: ghcr.io/moontechlab/lunatv:latest
-    container_name: moontv-core
-    restart: on-failure
-    ports:
-      - '3000:3000'
-    environment:
-      - USERNAME=admin
-      - PASSWORD=admin_password
-      - NEXT_PUBLIC_STORAGE_TYPE=redis
-      - REDIS_URL=redis://moontv-redis:6379
-    networks:
-      - moontv-network
-    depends_on:
-      - moontv-redis
-  moontv-redis:
-    image: redis:alpine
-    container_name: moontv-redis
-    restart: unless-stopped
-    networks:
-      - moontv-network
-    # 请开启持久化，否则升级/重启后数据丢失
-    volumes:
-      - ./data:/data
-networks:
-  moontv-network:
-    driver: bridge
-```
-
-### Upstash 存储
-
-1. 在 [upstash](https://upstash.com/) 注册账号并新建一个 Redis 实例，名称任意。
-2. 复制新数据库的 **HTTPS ENDPOINT 和 TOKEN**
-3. 使用如下 docker compose
-```yml
-services:
-  moontv-core:
-    image: ghcr.io/moontechlab/lunatv:latest
-    container_name: moontv-core
-    restart: on-failure
-    ports:
-      - '3000:3000'
-    environment:
-      - USERNAME=admin
-      - PASSWORD=admin_password
-      - NEXT_PUBLIC_STORAGE_TYPE=upstash
-      - UPSTASH_URL=上面 https 开头的 HTTPS ENDPOINT
-      - UPSTASH_TOKEN=上面的 TOKEN
-```
 
 ## 配置文件
-
-完成部署后为空壳应用，无播放源，需要站长在管理后台的配置文件设置中填写配置文件（后续会支持订阅）
 
 配置文件示例如下：
 
@@ -202,11 +98,6 @@ custom_category 支持的自定义分类已知如下：
 
 MoonTV 支持标准的苹果 CMS V10 API 格式。
 
-## 自动更新
-
-可借助 [watchtower](https://github.com/containrrr/watchtower) 自动更新镜像容器
-
-dockge/komodo 等 docker compose UI 也有自动更新功能
 
 ## 环境变量
 
