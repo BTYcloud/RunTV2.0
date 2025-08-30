@@ -51,7 +51,7 @@ import PageLayout from '@/components/PageLayout';
 const buttonStyles = {
   // 主要操作按钮（蓝色）- 用于配置、设置、确认等
   primary: 'px-3 py-1.5 text-sm font-medium bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white rounded-lg transition-colors',
-  // 成功操作按钮（绿色）- 用于添加、启用、保存等
+  // 成功操作按钮（绿色）- 用于添加、啟用、保存等
   success: 'px-3 py-1.5 text-sm font-medium bg-green-600 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-700 text-white rounded-lg transition-colors',
   // 危险操作按钮（红色）- 用于删除、禁用、重置等
   danger: 'px-3 py-1.5 text-sm font-medium bg-red-600 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700 text-white rounded-lg transition-colors',
@@ -175,7 +175,7 @@ const AlertModal = ({
               onClick={onClose}
               className={`px-4 py-2 text-sm font-medium ${buttonStyles.primary}`}
             >
-              确定
+              確定
             </button>
           )}
         </div>
@@ -214,7 +214,7 @@ const useAlertModal = () => {
 // 统一弹窗方法（必须在首次使用前定义）
 const showError = (message: string, showAlert?: (config: any) => void) => {
   if (showAlert) {
-    showAlert({ type: 'error', title: '错误', message, showConfirm: true });
+    showAlert({ type: 'error', title: '錯誤', message, showConfirm: true });
   } else {
     console.error(message);
   }
@@ -222,7 +222,7 @@ const showError = (message: string, showAlert?: (config: any) => void) => {
 
 const showSuccess = (message: string, showAlert?: (config: any) => void) => {
   if (showAlert) {
-    showAlert({ type: 'success', title: '成功', message, timer: 2000 });
+    showAlert({ type: 'success', title: '成哥', message, timer: 2000 });
   } else {
     console.log(message);
   }
@@ -255,7 +255,7 @@ const useLoadingState = () => {
   return { loadingStates, setLoading, isLoading, withLoading };
 };
 
-// 新增站点配置类型
+// 新增站點配置类型
 interface SiteConfig {
   SiteName: string;
   Announcement: string;
@@ -269,7 +269,7 @@ interface SiteConfig {
   FluidSearch: boolean;
 }
 
-// 视频源数据类型
+// 視頻源数据类型
 interface DataSource {
   name: string;
   key: string;
@@ -398,7 +398,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
   // 当前登录用户名
   const currentUsername = getAuthInfoFromBrowserCookie()?.username || null;
 
-  // 使用 useMemo 计算全选状态，避免每次渲染都重新计算
+  // 使用 useMemo 计算全選状态，避免每次渲染都重新计算
   const selectAllUsers = useMemo(() => {
     const selectableUserCount = config?.UserConfig?.Users?.filter(user =>
     (role === 'owner' ||
@@ -433,7 +433,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
 
         if (!res.ok) {
           const data = await res.json().catch(() => ({}));
-          throw new Error(data.error || `操作失败: ${res.status}`);
+          throw new Error(data.error || `操作失敗: ${res.status}`);
         }
 
         await refreshConfig();
@@ -446,9 +446,9 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
           setShowEditUserGroupForm(false);
         }
 
-        showSuccess(action === 'add' ? '用户组添加成功' : action === 'edit' ? '用户组更新成功' : '用户组删除成功', showAlert);
+        showSuccess(action === 'add' ? '用戶組添加成功' : action === 'edit' ? '更新成功' : '用戶組刪除成功', showAlert);
       } catch (err) {
-        showError(err instanceof Error ? err.message : '操作失败', showAlert);
+        showError(err instanceof Error ? err.message : '操作失敗', showAlert);
         throw err;
       }
     });
@@ -511,13 +511,13 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
 
         if (!res.ok) {
           const data = await res.json().catch(() => ({}));
-          throw new Error(data.error || `操作失败: ${res.status}`);
+          throw new Error(data.error || `操作失敗: ${res.status}`);
         }
 
         await refreshConfig();
         showSuccess('用户组分配成功', showAlert);
       } catch (err) {
-        showError(err instanceof Error ? err.message : '操作失败', showAlert);
+        showError(err instanceof Error ? err.message : '操作失敗', showAlert);
         throw err;
       }
     });
@@ -607,7 +607,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
     });
   };
 
-  // 处理用户选择
+  // 处理用户選擇
   const handleSelectUser = useCallback((username: string, checked: boolean) => {
     setSelectedUsers(prev => {
       const newSelectedUsers = new Set(prev);
@@ -622,7 +622,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
 
   const handleSelectAllUsers = useCallback((checked: boolean) => {
     if (checked) {
-      // 只选择自己有权限操作的用户
+      // 只選擇自己有权限操作的用户
       const selectableUsernames = config?.UserConfig?.Users?.filter(user =>
       (role === 'owner' ||
         (role === 'admin' &&
@@ -653,14 +653,14 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
 
         if (!res.ok) {
           const data = await res.json().catch(() => ({}));
-          throw new Error(data.error || `操作失败: ${res.status}`);
+          throw new Error(data.error || `操作失敗: ${res.status}`);
         }
 
         const userCount = selectedUsers.size;
         setSelectedUsers(new Set());
         setShowBatchUserGroupModal(false);
         setSelectedUserGroup('');
-        showSuccess(`已为 ${userCount} 个用户设置用户组: ${userGroup}`, showAlert);
+        showSuccess(`已為 ${userCount} 用戶設置用戶組: ${userGroup}`, showAlert);
 
         // 刷新配置
         await refreshConfig();
@@ -701,7 +701,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
 
         if (!res.ok) {
           const data = await res.json().catch(() => ({}));
-          throw new Error(data.error || `操作失败: ${res.status}`);
+          throw new Error(data.error || `操作失敗: ${res.status}`);
         }
 
         // 成功后刷新配置
@@ -710,7 +710,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
         setSelectedUser(null);
         setSelectedApis([]);
       } catch (err) {
-        showError(err instanceof Error ? err.message : '操作失败', showAlert);
+        showError(err instanceof Error ? err.message : '操作失敗', showAlert);
         throw err;
       }
     });
@@ -744,13 +744,13 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || `操作失败: ${res.status}`);
+        throw new Error(data.error || `操作失敗: ${res.status}`);
       }
 
-      // 成功后刷新配置（无需整页刷新）
+      // 成功后刷新配置（無需整页刷新）
       await refreshConfig();
     } catch (err) {
-      showError(err instanceof Error ? err.message : '操作失败', showAlert);
+      showError(err instanceof Error ? err.message : '操作失敗', showAlert);
     }
   };
 
@@ -771,35 +771,35 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
   if (!config) {
     return (
       <div className='text-center text-gray-500 dark:text-gray-400'>
-        加载中...
+        加載中...
       </div>
     );
   }
 
   return (
     <div className='space-y-6'>
-      {/* 用户统计 */}
+      {/* 用戶統計 */}
       <div>
         <h4 className='text-sm font-medium text-gray-700 dark:text-gray-300 mb-3'>
-          用户统计
+          用戶統計
         </h4>
         <div className='p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800'>
           <div className='text-2xl font-bold text-green-800 dark:text-green-300'>
             {config.UserConfig.Users.length}
           </div>
           <div className='text-sm text-green-600 dark:text-green-400'>
-            总用户数
+            總用戶數
           </div>
         </div>
       </div>
 
 
 
-      {/* 用户组管理 */}
+      {/* 用戶組管理 */}
       <div>
         <div className='flex items-center justify-between mb-3'>
           <h4 className='text-sm font-medium text-gray-700 dark:text-gray-300'>
-            用户组管理
+            用戶組管理
           </h4>
           <button
             onClick={() => {
@@ -821,10 +821,10 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
             <thead className='bg-gray-50 dark:bg-gray-900 sticky top-0 z-10'>
               <tr>
                 <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider'>
-                  用户组名称
+                  用戶組名稱
                 </th>
                 <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider'>
-                  可用视频源
+                  可用視頻源
                 </th>
                 <th className='px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider'>
                   操作
@@ -842,7 +842,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                       <span className='text-sm text-gray-900 dark:text-gray-100'>
                         {group.enabledApis && group.enabledApis.length > 0
                           ? `${group.enabledApis.length} 个源`
-                          : '无限制'}
+                          : '無限制'}
                       </span>
                     </div>
                   </td>
@@ -852,13 +852,13 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                       disabled={isLoading(`userGroup_edit_${group.name}`)}
                       className={`${buttonStyles.roundedPrimary} ${isLoading(`userGroup_edit_${group.name}`) ? 'opacity-50 cursor-not-allowed' : ''}`}
                     >
-                      编辑
+                      編輯
                     </button>
                     <button
                       onClick={() => handleDeleteUserGroup(group.name)}
                       className={buttonStyles.roundedDanger}
                     >
-                      删除
+                      刪除
                     </button>
                   </td>
                 </tr>
@@ -866,7 +866,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
               {userGroups.length === 0 && (
                 <tr>
                   <td colSpan={3} className='px-6 py-8 text-center text-sm text-gray-500 dark:text-gray-400'>
-                    暂无用户组，请添加用户组来管理用户权限
+                    暂無用户组，请添加用户组来管理用户权限
                   </td>
                 </tr>
               )}
@@ -887,13 +887,13 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
               <>
                 <div className='flex items-center space-x-3'>
                   <span className='text-sm text-gray-600 dark:text-gray-400'>
-                    已选择 {selectedUsers.size} 个用户
+                    已選擇 {selectedUsers.size} 用戶
                   </span>
                   <button
                     onClick={() => setShowBatchUserGroupModal(true)}
                     className={buttonStyles.primary}
                   >
-                    批量设置用户组
+                    批量設置用戶組
                   </button>
                 </div>
                 <div className='w-px h-6 bg-gray-300 dark:bg-gray-600'></div>
@@ -921,7 +921,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
               <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
                 <input
                   type='text'
-                  placeholder='用户名'
+                  placeholder='用戶名'
                   value={newUser.username}
                   onChange={(e) =>
                     setNewUser((prev) => ({ ...prev, username: e.target.value }))
@@ -930,7 +930,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                 />
                 <input
                   type='password'
-                  placeholder='密码'
+                  placeholder='密碼'
                   value={newUser.password}
                   onChange={(e) =>
                     setNewUser((prev) => ({ ...prev, password: e.target.value }))
@@ -940,7 +940,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
               </div>
               <div>
                 <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
-                  用户组（可选）
+                  用户组（可選）
                 </label>
                 <select
                   value={newUser.userGroup}
@@ -949,10 +949,10 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                   }
                   className='w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-green-500 focus:border-transparent'
                 >
-                  <option value=''>无用户组（无限制）</option>
+                  <option value=''>無組（不限制）</option>
                   {userGroups.map((group) => (
                     <option key={group.name} value={group.name}>
-                      {group.name} ({group.enabledApis && group.enabledApis.length > 0 ? `${group.enabledApis.length} 个源` : '无限制'})
+                      {group.name} ({group.enabledApis && group.enabledApis.length > 0 ? `${group.enabledApis.length} 个源` : '無限制'})
                     </option>
                   ))}
                 </select>
@@ -970,11 +970,11 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
           </div>
         )}
 
-        {/* 修改密码表单 */}
+        {/* 修改密碼表单 */}
         {showChangePasswordForm && (
           <div className='mb-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700'>
             <h5 className='text-sm font-medium text-blue-800 dark:text-blue-300 mb-3'>
-              修改用户密码
+              修改用户密碼
             </h5>
             <div className='flex flex-col sm:flex-row gap-4 sm:gap-3'>
               <input
@@ -986,7 +986,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
               />
               <input
                 type='password'
-                placeholder='新密码'
+                placeholder='新密碼'
                 value={changePasswordUser.password}
                 onChange={(e) =>
                   setChangePasswordUser((prev) => ({
@@ -1001,7 +1001,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                 disabled={!changePasswordUser.password || isLoading(`changePassword_${changePasswordUser.username}`)}
                 className={`w-full sm:w-auto ${!changePasswordUser.password || isLoading(`changePassword_${changePasswordUser.username}`) ? buttonStyles.disabled : buttonStyles.primary}`}
               >
-                {isLoading(`changePassword_${changePasswordUser.username}`) ? '修改中...' : '修改密码'}
+                {isLoading(`changePassword_${changePasswordUser.username}`) ? '修改中...' : '修改密碼'}
               </button>
               <button
                 onClick={() => {
@@ -1054,25 +1054,25 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                   scope='col'
                   className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider'
                 >
-                  角色
+                  帝位
                 </th>
                 <th
                   scope='col'
                   className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider'
                 >
-                  状态
+                  狀態
                 </th>
                 <th
                   scope='col'
                   className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider'
                 >
-                  用户组
+                  組別
                 </th>
                 <th
                   scope='col'
                   className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider'
                 >
-                  采集源权限
+                  資源權限
                 </th>
                 <th
                   scope='col'
@@ -1082,7 +1082,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                 </th>
               </tr>
             </thead>
-            {/* 按规则排序用户：自己 -> 站长(若非自己) -> 管理员 -> 其他 */}
+            {/* 按规则排序用户：自己 -> 站长(若非自己) -> 管理員 -> 其他 */}
             {(() => {
               const sortedUsers = [...config.UserConfig.Users].sort((a, b) => {
                 type UserInfo = (typeof config.UserConfig.Users)[number];
@@ -1097,21 +1097,21 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
               return (
                 <tbody className='divide-y divide-gray-200 dark:divide-gray-700'>
                   {sortedUsers.map((user) => {
-                    // 修改密码权限：站长可修改管理员和普通用户密码，管理员可修改普通用户和自己的密码，但任何人都不能修改站长密码
+                    // 修改密碼权限：站长可修改管理員和普通用户密碼，管理員可修改普通用户和自己的密碼，但任何人都不能修改站长密碼
                     const canChangePassword =
-                      user.role !== 'owner' && // 不能修改站长密码
-                      (role === 'owner' || // 站长可以修改管理员和普通用户密码
+                      user.role !== 'owner' && // 不能修改站长密碼
+                      (role === 'owner' || // 站长可以修改管理員和普通用户密碼
                         (role === 'admin' &&
                           (user.role === 'user' ||
-                            user.username === currentUsername))); // 管理员可以修改普通用户和自己的密码
+                            user.username === currentUsername))); // 管理員可以修改普通用户和自己的密碼
 
-                    // 删除用户权限：站长可删除除自己外的所有用户，管理员仅可删除普通用户
+                    // 删除用户权限：站长可删除除自己外的所有用户，管理員仅可删除普通用户
                     const canDeleteUser =
                       user.username !== currentUsername &&
                       (role === 'owner' || // 站长可以删除除自己外的所有用户
-                        (role === 'admin' && user.role === 'user')); // 管理员仅可删除普通用户
+                        (role === 'admin' && user.role === 'user')); // 管理員仅可删除普通用户
 
-                    // 其他操作权限：不能操作自己，站长可操作所有用户，管理员可操作普通用户
+                    // 其他操作权限：不能操作自己，站长可操作所有用户，管理員可操作普通用户
                     const canOperate =
                       user.username !== currentUsername &&
                       (role === 'owner' ||
@@ -1152,7 +1152,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                             {user.role === 'owner'
                               ? '站长'
                               : user.role === 'admin'
-                                ? '管理员'
+                                ? '管理員'
                                 : '普通用户'}
                           </span>
                         </td>
@@ -1163,7 +1163,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                               : 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300'
                               }`}
                           >
-                            {!user.banned ? '正常' : '已封禁'}
+                            {!user.banned ? '正常' : '封禁'}
                           </span>
                         </td>
                         <td className='px-6 py-4 whitespace-nowrap'>
@@ -1171,7 +1171,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                             <span className='text-sm text-gray-900 dark:text-gray-100'>
                               {user.tags && user.tags.length > 0
                                 ? user.tags.join(', ')
-                                : '无用户组'}
+                                : '無用户组'}
                             </span>
                             {/* 配置用户组按钮 */}
                             {(role === 'owner' ||
@@ -1192,7 +1192,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                             <span className='text-sm text-gray-900 dark:text-gray-100'>
                               {user.enabledApis && user.enabledApis.length > 0
                                 ? `${user.enabledApis.length} 个源`
-                                : '无限制'}
+                                : '無限制'}
                             </span>
                             {/* 配置采集源权限按钮 */}
                             {(role === 'owner' ||
@@ -1209,7 +1209,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                           </div>
                         </td>
                         <td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2'>
-                          {/* 修改密码按钮 */}
+                          {/* 修改密碼按钮 */}
                           {canChangePassword && (
                             <button
                               onClick={() =>
@@ -1217,7 +1217,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                               }
                               className={buttonStyles.roundedPrimary}
                             >
-                              修改密码
+                              修改密碼
                             </button>
                           )}
                           {canOperate && (
@@ -1229,7 +1229,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                                   disabled={isLoading(`setAdmin_${user.username}`)}
                                   className={`${buttonStyles.roundedPurple} ${isLoading(`setAdmin_${user.username}`) ? 'opacity-50 cursor-not-allowed' : ''}`}
                                 >
-                                  设为管理
+                                  設為管理
                                 </button>
                               )}
                               {user.role === 'admin' && (
@@ -1323,15 +1323,15 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                     </span>
                   </div>
                   <p className='text-sm text-blue-700 dark:text-blue-400 mt-1'>
-                    提示：全不选为无限制，选中的采集源将限制用户只能访问这些源
+                    提示：全不選为無限制，選中的采集源将限制用户只能访问这些源
                   </p>
                 </div>
               </div>
 
-              {/* 采集源选择 - 多列布局 */}
+              {/* 采集源選擇 - 多列布局 */}
               <div className='mb-6'>
                 <h4 className='text-sm font-medium text-gray-700 dark:text-gray-300 mb-4'>
-                  选择可用的采集源：
+                  選擇可用的采集源：
                 </h4>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                   {config?.SourceConfig?.map((source) => (
@@ -1370,7 +1370,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                     onClick={() => setSelectedApis([])}
                     className={buttonStyles.quickAction}
                   >
-                    全不选（无限制）
+                    全不選（無限制）
                   </button>
                   <button
                     onClick={() => {
@@ -1379,12 +1379,12 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                     }}
                     className={buttonStyles.quickAction}
                   >
-                    全选
+                    全選
                   </button>
                 </div>
                 <div className='text-sm text-gray-600 dark:text-gray-400'>
-                  已选择：<span className='font-medium text-blue-600 dark:text-blue-400'>
-                    {selectedApis.length > 0 ? `${selectedApis.length} 个源` : '无限制'}
+                  已選擇：<span className='font-medium text-blue-600 dark:text-blue-400'>
+                    {selectedApis.length > 0 ? `${selectedApis.length} 个源` : '無限制'}
                   </span>
                 </div>
               </div>
@@ -1441,14 +1441,14 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
               </div>
 
               <div className='space-y-6'>
-                {/* 用户组名称 */}
+                {/* 用戶組名稱 */}
                 <div>
                   <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
-                    用户组名称
+                    用戶組名稱
                   </label>
                   <input
                     type='text'
-                    placeholder='请输入用户组名称'
+                    placeholder='请输入用戶組名稱'
                     value={newUserGroup.name}
                     onChange={(e) =>
                       setNewUserGroup((prev) => ({ ...prev, name: e.target.value }))
@@ -1457,10 +1457,10 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                   />
                 </div>
 
-                {/* 可用视频源 */}
+                {/* 可用視頻源 */}
                 <div>
                   <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-4'>
-                    可用视频源
+                    可用視頻源
                   </label>
                   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
                     {config?.SourceConfig?.map((source) => (
@@ -1503,7 +1503,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                       onClick={() => setNewUserGroup(prev => ({ ...prev, enabledApis: [] }))}
                       className={buttonStyles.quickAction}
                     >
-                      全不选（无限制）
+                      全不選（無限制）
                     </button>
                     <button
                       onClick={() => {
@@ -1512,7 +1512,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                       }}
                       className={buttonStyles.quickAction}
                     >
-                      全选
+                      全選
                     </button>
                   </div>
                 </div>
@@ -1569,10 +1569,10 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
               </div>
 
               <div className='space-y-6'>
-                {/* 可用视频源 */}
+                {/* 可用視頻源 */}
                 <div>
                   <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-4'>
-                    可用视频源
+                    可用視頻源
                   </label>
                   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
                     {config?.SourceConfig?.map((source) => (
@@ -1615,7 +1615,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                       onClick={() => setEditingUserGroup(prev => prev ? { ...prev, enabledApis: [] } : null)}
                       className={buttonStyles.quickAction}
                     >
-                      全不选（无限制）
+                      全不選（無限制）
                     </button>
                     <button
                       onClick={() => {
@@ -1624,7 +1624,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                       }}
                       className={buttonStyles.quickAction}
                     >
-                      全选
+                      全選
                     </button>
                   </div>
                 </div>
@@ -1693,15 +1693,15 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                     </span>
                   </div>
                   <p className='text-sm text-blue-700 dark:text-blue-400 mt-1'>
-                    提示：选择"无用户组"为无限制，选择特定用户组将限制用户只能访问该用户组允许的采集源
+                    提示：選擇"無用户组"为無限制，選擇特定用户组将限制用户只能访问该用户组允许的采集源
                   </p>
                 </div>
               </div>
 
-              {/* 用户组选择 - 下拉选择器 */}
+              {/* 用户组選擇 - 下拉選擇器 */}
               <div className='mb-6'>
                 <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
-                  选择用户组：
+                  選擇用户组：
                 </label>
                 <select
                   value={selectedUserGroups.length > 0 ? selectedUserGroups[0] : ''}
@@ -1711,7 +1711,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                   }}
                   className='w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors'
                 >
-                  <option value=''>无用户组（无限制）</option>
+                  <option value=''>無用户组（無限制）</option>
                   {userGroups.map((group) => (
                     <option key={group.name} value={group.name}>
                       {group.name} {group.enabledApis && group.enabledApis.length > 0 ? `(${group.enabledApis.length} 个源)` : ''}
@@ -1719,7 +1719,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                   ))}
                 </select>
                 <p className='mt-2 text-xs text-gray-500 dark:text-gray-400'>
-                  选择"无用户组"为无限制，选择特定用户组将限制用户只能访问该用户组允许的采集源
+                  選擇"無用户组"为無限制，選擇特定用户组将限制用户只能访问该用户组允许的采集源
                 </p>
               </div>
 
@@ -1952,20 +1952,20 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                     </span>
                   </div>
                   <p className='text-sm text-blue-700 dark:text-blue-400'>
-                    将为选中的 <strong>{selectedUsers.size} 个用户</strong> 设置用户组，选择"无用户组"为无限制
+                    将为選中的 <strong>{selectedUsers.size} 个用户</strong> 设置用户组，選擇"無用户组"为無限制
                   </p>
                 </div>
 
                 <div>
                   <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
-                    选择用户组：
+                    選擇用户组：
                   </label>
                   <select
                     onChange={(e) => setSelectedUserGroup(e.target.value)}
                     className='w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors'
                     value={selectedUserGroup}
                   >
-                    <option value=''>无用户组（无限制）</option>
+                    <option value=''>無用户组（無限制）</option>
                     {userGroups.map((group) => (
                       <option key={group.name} value={group.name}>
                         {group.name} {group.enabledApis && group.enabledApis.length > 0 ? `(${group.enabledApis.length} 个源)` : ''}
@@ -1973,7 +1973,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
                     ))}
                   </select>
                   <p className='mt-2 text-xs text-gray-500 dark:text-gray-400'>
-                    选择"无用户组"为无限制，选择特定用户组将限制用户只能访问该用户组允许的采集源
+                    選擇"無用户组"为無限制，選擇特定用户组将限制用户只能访问该用户组允许的采集源
                   </p>
                 </div>
               </div>
@@ -2019,7 +2019,7 @@ const UserConfig = ({ config, role, refreshConfig }: UserConfigProps) => {
   );
 }
 
-// 视频源配置组件
+// 視頻源配置组件
 const VideoSourceConfig = ({
   config,
   refreshConfig,
@@ -2044,7 +2044,7 @@ const VideoSourceConfig = ({
   // 批量操作相关状态
   const [selectedSources, setSelectedSources] = useState<Set<string>>(new Set());
 
-  // 使用 useMemo 计算全选状态，避免每次渲染都重新计算
+  // 使用 useMemo 计算全選状态，避免每次渲染都重新计算
   const selectAll = useMemo(() => {
     return selectedSources.size === sources.length && selectedSources.size > 0;
   }, [selectedSources.size, sources.length]);
@@ -2064,7 +2064,7 @@ const VideoSourceConfig = ({
     onCancel: () => { }
   });
 
-  // 有效性检测相关状态
+  // 有效性檢測相关状态
   const [showValidationModal, setShowValidationModal] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [isValidating, setIsValidating] = useState(false);
@@ -2097,7 +2097,7 @@ const VideoSourceConfig = ({
       setSources(config.SourceConfig);
       // 进入时重置 orderChanged
       setOrderChanged(false);
-      // 重置选择状态
+      // 重置選擇状态
       setSelectedSources(new Set());
     }
   }, [config]);
@@ -2113,13 +2113,13 @@ const VideoSourceConfig = ({
 
       if (!resp.ok) {
         const data = await resp.json().catch(() => ({}));
-        throw new Error(data.error || `操作失败: ${resp.status}`);
+        throw new Error(data.error || `操作失敗: ${resp.status}`);
       }
 
       // 成功后刷新配置
       await refreshConfig();
     } catch (err) {
-      showError(err instanceof Error ? err.message : '操作失败', showAlert);
+      showError(err instanceof Error ? err.message : '操作失敗', showAlert);
       throw err; // 向上抛出方便调用处判断
     }
   };
@@ -2129,13 +2129,13 @@ const VideoSourceConfig = ({
     if (!target) return;
     const action = target.disabled ? 'enable' : 'disable';
     withLoading(`toggleSource_${key}`, () => callSourceApi({ action, key })).catch(() => {
-      console.error('操作失败', action, key);
+      console.error('操作失敗', action, key);
     });
   };
 
   const handleDelete = (key: string) => {
     withLoading(`deleteSource_${key}`, () => callSourceApi({ action: 'delete', key })).catch(() => {
-      console.error('操作失败', 'delete', key);
+      console.error('操作失敗', 'delete', key);
     });
   };
 
@@ -2159,7 +2159,7 @@ const VideoSourceConfig = ({
       });
       setShowAddForm(false);
     }).catch(() => {
-      console.error('操作失败', 'add', newSource);
+      console.error('操作失敗', 'add', newSource);
     });
   };
 
@@ -2179,14 +2179,14 @@ const VideoSourceConfig = ({
         setOrderChanged(false);
       })
       .catch(() => {
-        console.error('操作失败', 'sort', order);
+        console.error('操作失敗', 'sort', order);
       });
   };
 
-  // 有效性检测函数
+  // 有效性檢測函数
   const handleValidateSources = async () => {
     if (!searchKeyword.trim()) {
-      showAlert({ type: 'warning', title: '请输入搜索关键词', message: '搜索关键词不能为空' });
+      showAlert({ type: 'warning', title: '請輸入搜索關鍵詞', message: '你倒是輸入啊' });
       return;
     }
 
@@ -2195,12 +2195,12 @@ const VideoSourceConfig = ({
       setValidationResults([]); // 清空之前的结果
       setShowValidationModal(false); // 立即关闭弹窗
 
-      // 初始化所有视频源为检测中状态
+      // 初始化所有視頻源为檢測中状态
       const initialResults = sources.map(source => ({
         key: source.key,
         name: source.name,
         status: 'validating' as const,
-        message: '检测中...',
+        message: '檢測中...',
         resultCount: 0
       }));
       setValidationResults(initialResults);
@@ -2215,7 +2215,7 @@ const VideoSourceConfig = ({
 
             switch (data.type) {
               case 'start':
-                console.log(`开始检测 ${data.totalSources} 个视频源`);
+                console.log(`开始檢測 ${data.totalSources} 个視頻源`);
                 break;
 
               case 'source_result':
@@ -2229,7 +2229,7 @@ const VideoSourceConfig = ({
                       name: sources.find(s => s.key === data.source)?.name || data.source,
                       status: data.status,
                       message: data.status === 'valid' ? '搜索正常' :
-                        data.status === 'no_results' ? '无法搜索到结果' : '连接失败',
+                        data.status === 'no_results' ? '無法搜索到结果' : '連接失敗',
                       resultCount: data.status === 'valid' ? 1 : 0
                     } : r);
                   } else {
@@ -2238,7 +2238,7 @@ const VideoSourceConfig = ({
                       name: sources.find(s => s.key === data.source)?.name || data.source,
                       status: data.status,
                       message: data.status === 'valid' ? '搜索正常' :
-                        data.status === 'no_results' ? '无法搜索到结果' : '连接失败',
+                        data.status === 'no_results' ? '無法搜索到结果' : '连接失败',
                       resultCount: data.status === 'valid' ? 1 : 0
                     }];
                   }
@@ -2246,7 +2246,7 @@ const VideoSourceConfig = ({
                 break;
 
               case 'complete':
-                console.log(`检测完成，共检测 ${data.completedSources} 个视频源`);
+                console.log(`檢測完成，共檢測 ${data.completedSources} 個視頻源`);
                 eventSource.close();
                 setIsValidating(false);
                 break;
@@ -2268,7 +2268,7 @@ const VideoSourceConfig = ({
           if (eventSource.readyState === EventSource.OPEN) {
             eventSource.close();
             setIsValidating(false);
-            showAlert({ type: 'warning', title: '验证超时', message: '检测超时，请重试' });
+            showAlert({ type: 'warning', title: '验证超时', message: '檢測超时，请重试' });
           }
         }, 60000); // 60秒超时
 
@@ -2288,7 +2288,7 @@ const VideoSourceConfig = ({
     switch (result.status) {
       case 'validating':
         return {
-          text: '检测中',
+          text: '檢測中',
           className: 'bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-300',
           icon: '⟳',
           message: result.message
@@ -2302,14 +2302,14 @@ const VideoSourceConfig = ({
         };
       case 'no_results':
         return {
-          text: '无法搜索',
+          text: '無法搜索',
           className: 'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300',
           icon: '⚠',
           message: result.message
         };
       case 'invalid':
         return {
-          text: '无效',
+          text: '無效',
           className: 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300',
           icon: '✗',
           message: result.message
@@ -2376,7 +2376,7 @@ const VideoSourceConfig = ({
               : 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300'
               }`}
           >
-            {!source.disabled ? '启用中' : '已禁用'}
+            {!source.disabled ? '啟用中' : '已禁用'}
           </span>
         </td>
         <td className='px-6 py-4 whitespace-nowrap max-w-[1rem]'>
@@ -2385,7 +2385,7 @@ const VideoSourceConfig = ({
             if (!status) {
               return (
                 <span className='px-2 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400'>
-                  未检测
+                  未檢測
                 </span>
               );
             }
@@ -2405,7 +2405,7 @@ const VideoSourceConfig = ({
               : buttonStyles.roundedSuccess
               } transition-colors ${isLoading(`toggleSource_${source.key}`) ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
-            {!source.disabled ? '禁用' : '启用'}
+            {!source.disabled ? '禁用' : '啟用'}
           </button>
           {source.from !== 'config' && (
             <button
@@ -2421,7 +2421,7 @@ const VideoSourceConfig = ({
     );
   };
 
-  // 全选/取消全选
+  // 全選/取消全選
   const handleSelectAll = useCallback((checked: boolean) => {
     if (checked) {
       const allKeys = sources.map(s => s.key);
@@ -2431,7 +2431,7 @@ const VideoSourceConfig = ({
     }
   }, [sources]);
 
-  // 单个选择
+  // 单个選擇
   const handleSelectSource = useCallback((key: string, checked: boolean) => {
     setSelectedSources(prev => {
       const newSelected = new Set(prev);
@@ -2447,7 +2447,7 @@ const VideoSourceConfig = ({
   // 批量操作
   const handleBatchOperation = async (action: 'batch_enable' | 'batch_disable' | 'batch_delete') => {
     if (selectedSources.size === 0) {
-      showAlert({ type: 'warning', title: '请先选择要操作的视频源', message: '请选择至少一个视频源' });
+      showAlert({ type: 'warning', title: '请先選擇要操作的視頻源', message: '请選擇至少一个視頻源' });
       return;
     }
 
@@ -2457,15 +2457,15 @@ const VideoSourceConfig = ({
 
     switch (action) {
       case 'batch_enable':
-        confirmMessage = `确定要启用选中的 ${keys.length} 个视频源吗？`;
-        actionName = '批量启用';
+        confirmMessage = `确定要啟用選中的 ${keys.length} 个視頻源吗？`;
+        actionName = '批量啟用';
         break;
       case 'batch_disable':
-        confirmMessage = `确定要禁用选中的 ${keys.length} 个视频源吗？`;
+        confirmMessage = `确定要禁用選中的 ${keys.length} 个視頻源吗？`;
         actionName = '批量禁用';
         break;
       case 'batch_delete':
-        confirmMessage = `确定要删除选中的 ${keys.length} 个视频源吗？此操作不可恢复！`;
+        confirmMessage = `确定要删除選中的 ${keys.length} 个視頻源吗？此操作不可恢复！`;
         actionName = '批量删除';
         break;
     }
@@ -2478,11 +2478,11 @@ const VideoSourceConfig = ({
       onConfirm: async () => {
         try {
           await withLoading(`batchSource_${action}`, () => callSourceApi({ action, keys }));
-          showAlert({ type: 'success', title: `${actionName}成功`, message: `${actionName}了 ${keys.length} 个视频源`, timer: 2000 });
-          // 重置选择状态
+          showAlert({ type: 'success', title: `${actionName}成功`, message: `${actionName}了 ${keys.length} 个視頻源`, timer: 2000 });
+          // 重置選擇状态
           setSelectedSources(new Set());
         } catch (err) {
-          showAlert({ type: 'error', title: `${actionName}失败`, message: err instanceof Error ? err.message : '操作失败' });
+          showAlert({ type: 'error', title: `${actionName}失败`, message: err instanceof Error ? err.message : '操作失敗' });
         }
         setConfirmModal({ isOpen: false, title: '', message: '', onConfirm: () => { }, onCancel: () => { } });
       },
@@ -2495,17 +2495,17 @@ const VideoSourceConfig = ({
   if (!config) {
     return (
       <div className='text-center text-gray-500 dark:text-gray-400'>
-        加载中...
+        加載中...
       </div>
     );
   }
 
   return (
     <div className='space-y-6'>
-      {/* 添加视频源表单 */}
+      {/* 添加視頻源表单 */}
       <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4'>
         <h4 className='text-sm font-medium text-gray-700 dark:text-gray-300'>
-          视频源列表
+          視頻源列表
         </h4>
         <div className='flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-2'>
           {/* 批量操作按钮 - 移动端显示在下一行，PC端显示在左侧 */}
@@ -2513,15 +2513,15 @@ const VideoSourceConfig = ({
             <>
               <div className='flex flex-wrap items-center gap-3 order-2 sm:order-1'>
                 <span className='text-sm text-gray-600 dark:text-gray-400'>
-                  <span className='sm:hidden'>已选 {selectedSources.size}</span>
-                  <span className='hidden sm:inline'>已选择 {selectedSources.size} 个视频源</span>
+                  <span className='sm:hidden'>已選 {selectedSources.size}</span>
+                  <span className='hidden sm:inline'>已選擇 {selectedSources.size} 个視頻源</span>
                 </span>
                 <button
                   onClick={() => handleBatchOperation('batch_enable')}
                   disabled={isLoading('batchSource_batch_enable')}
                   className={`px-3 py-1 text-sm ${isLoading('batchSource_batch_enable') ? buttonStyles.disabled : buttonStyles.success}`}
                 >
-                  {isLoading('batchSource_batch_enable') ? '启用中...' : '批量启用'}
+                  {isLoading('batchSource_batch_enable') ? '啟用中...' : '批量啟用'}
                 </button>
                 <button
                   onClick={() => handleBatchOperation('batch_disable')}
@@ -2553,17 +2553,17 @@ const VideoSourceConfig = ({
               {isValidating ? (
                 <>
                   <div className='w-3 h-3 border border-white border-t-transparent rounded-full animate-spin'></div>
-                  <span>检测中...</span>
+                  <span>檢測中...</span>
                 </>
               ) : (
-                '有效性检测'
+                '有效性檢測'
               )}
             </button>
             <button
               onClick={() => setShowAddForm(!showAddForm)}
               className={showAddForm ? buttonStyles.secondary : buttonStyles.success}
             >
-              {showAddForm ? '取消' : '添加视频源'}
+              {showAddForm ? '取消' : '添加視頻源'}
             </button>
           </div>
         </div>
@@ -2574,7 +2574,7 @@ const VideoSourceConfig = ({
           <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
             <input
               type='text'
-              placeholder='名称'
+              placeholder='名稱'
               value={newSource.name}
               onChange={(e) =>
                 setNewSource((prev) => ({ ...prev, name: e.target.value }))
@@ -2601,7 +2601,7 @@ const VideoSourceConfig = ({
             />
             <input
               type='text'
-              placeholder='Detail 地址（选填）'
+              placeholder='Detail 地址（選填）'
               value={newSource.detail}
               onChange={(e) =>
                 setNewSource((prev) => ({ ...prev, detail: e.target.value }))
@@ -2623,7 +2623,7 @@ const VideoSourceConfig = ({
 
 
 
-      {/* 视频源表格 */}
+      {/* 視頻源表格 */}
       <div className='border border-gray-200 dark:border-gray-700 rounded-lg max-h-[28rem] overflow-y-auto overflow-x-auto relative' data-table="source-list">
         <table className='min-w-full divide-y divide-gray-200 dark:divide-gray-700'>
           <thead className='bg-gray-50 dark:bg-gray-900 sticky top-0 z-10'>
@@ -2638,7 +2638,7 @@ const VideoSourceConfig = ({
                 />
               </th>
               <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider'>
-                名称
+                名稱
               </th>
               <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider'>
                 Key
@@ -2694,15 +2694,15 @@ const VideoSourceConfig = ({
         </div>
       )}
 
-      {/* 有效性检测弹窗 */}
+      {/* 有效性檢測弹窗 */}
       {showValidationModal && createPortal(
         <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50' onClick={() => setShowValidationModal(false)}>
           <div className='bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md mx-4' onClick={(e) => e.stopPropagation()}>
             <h3 className='text-lg font-medium text-gray-900 dark:text-gray-100 mb-4'>
-              视频源有效性检测
+              視頻源有效性檢測
             </h3>
             <p className='text-sm text-gray-600 dark:text-gray-400 mb-4'>
-              请输入检测用的搜索关键词
+              请输入檢測用的搜索关键词
             </p>
             <div className='space-y-4'>
               <input
@@ -2725,7 +2725,7 @@ const VideoSourceConfig = ({
                   disabled={!searchKeyword.trim()}
                   className={`px-4 py-2 ${!searchKeyword.trim() ? buttonStyles.disabled : buttonStyles.primary}`}
                 >
-                  开始检测
+                  開始檢測
                 </button>
               </div>
             </div>
@@ -2851,13 +2851,13 @@ const CategoryConfig = ({
 
       if (!resp.ok) {
         const data = await resp.json().catch(() => ({}));
-        throw new Error(data.error || `操作失败: ${resp.status}`);
+        throw new Error(data.error || `操作失敗: ${resp.status}`);
       }
 
       // 成功后刷新配置
       await refreshConfig();
     } catch (err) {
-      showError(err instanceof Error ? err.message : '操作失败', showAlert);
+      showError(err instanceof Error ? err.message : '操作失敗', showAlert);
       throw err; // 向上抛出方便调用处判断
     }
   };
@@ -2867,13 +2867,13 @@ const CategoryConfig = ({
     if (!target) return;
     const action = target.disabled ? 'enable' : 'disable';
     withLoading(`toggleCategory_${query}_${type}`, () => callCategoryApi({ action, query, type })).catch(() => {
-      console.error('操作失败', action, query, type);
+      console.error('操作失敗', action, query, type);
     });
   };
 
   const handleDelete = (query: string, type: 'movie' | 'tv') => {
     withLoading(`deleteCategory_${query}_${type}`, () => callCategoryApi({ action: 'delete', query, type })).catch(() => {
-      console.error('操作失败', 'delete', query, type);
+      console.error('操作失敗', 'delete', query, type);
     });
   };
 
@@ -2895,7 +2895,7 @@ const CategoryConfig = ({
       });
       setShowAddForm(false);
     }).catch(() => {
-      console.error('操作失败', 'add', newCategory);
+      console.error('操作失敗', 'add', newCategory);
     });
   };
 
@@ -2919,7 +2919,7 @@ const CategoryConfig = ({
         setOrderChanged(false);
       })
       .catch(() => {
-        console.error('操作失败', 'sort', order);
+        console.error('操作失敗', 'sort', order);
       });
   };
 
@@ -2972,7 +2972,7 @@ const CategoryConfig = ({
               : 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300'
               }`}
           >
-            {!category.disabled ? '启用中' : '已禁用'}
+            {!category.disabled ? '啟用中' : '已禁用'}
           </span>
         </td>
         <td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2'>
@@ -2986,7 +2986,7 @@ const CategoryConfig = ({
               : buttonStyles.roundedSuccess
               } transition-colors ${isLoading(`toggleCategory_${category.query}_${category.type}`) ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
-            {!category.disabled ? '禁用' : '启用'}
+            {!category.disabled ? '禁用' : '啟用'}
           </button>
           {category.from !== 'config' && (
             <button
@@ -3005,7 +3005,7 @@ const CategoryConfig = ({
   if (!config) {
     return (
       <div className='text-center text-gray-500 dark:text-gray-400'>
-        加载中...
+        加載中...
       </div>
     );
   }
@@ -3030,7 +3030,7 @@ const CategoryConfig = ({
           <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
             <input
               type='text'
-              placeholder='分类名称'
+              placeholder='分类名稱'
               value={newCategory.name}
               onChange={(e) =>
                 setNewCategory((prev) => ({ ...prev, name: e.target.value }))
@@ -3079,7 +3079,7 @@ const CategoryConfig = ({
             <tr>
               <th className='w-8' />
               <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider'>
-                分类名称
+                分类名稱
               </th>
               <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider'>
                 类型
@@ -3241,7 +3241,7 @@ const ConfigFileComponent = ({ config, refreshConfig }: { config: AdminConfig | 
   if (!config) {
     return (
       <div className='text-center text-gray-500 dark:text-gray-400'>
-        加载中...
+        加載中...
       </div>
     );
   }
@@ -3306,7 +3306,7 @@ const ConfigFileComponent = ({ config, refreshConfig }: { config: AdminConfig | 
                 自动更新
               </label>
               <p className='text-xs text-gray-500 dark:text-gray-400 mt-1'>
-                启用后系统将定期自动拉取最新配置
+                啟用后系统将定期自动拉取最新配置
               </p>
             </div>
             <button
@@ -3349,7 +3349,7 @@ const ConfigFileComponent = ({ config, refreshConfig }: { config: AdminConfig | 
 
         <div className='flex items-center justify-between'>
           <div className='text-xs text-gray-500 dark:text-gray-400'>
-            支持 JSON 格式，用于配置视频源和自定义分类
+            支持 JSON 格式，用于配置視頻源和自定义分类
           </div>
           <button
             onClick={handleSave}
@@ -3378,7 +3378,7 @@ const ConfigFileComponent = ({ config, refreshConfig }: { config: AdminConfig | 
   );
 };
 
-// 新增站点配置组件
+// 新增站點配置组件
 const SiteConfigComponent = ({ config, refreshConfig }: { config: AdminConfig | null; refreshConfig: () => Promise<void> }) => {
   const { alertModal, showAlert, hideAlert } = useAlertModal();
   const { isLoading, withLoading } = useLoadingState();
@@ -3400,28 +3400,28 @@ const SiteConfigComponent = ({ config, refreshConfig }: { config: AdminConfig | 
   const [isDoubanImageProxyDropdownOpen, setIsDoubanImageProxyDropdownOpen] =
     useState(false);
 
-  // 豆瓣数据源选项
+  // 豆瓣数据源選项
   const doubanDataSourceOptions = [
-    { value: 'direct', label: '直连（服务器直接请求豆瓣）' },
+    { value: 'direct', label: '直連（母雞-豆瓣）' },
     { value: 'cors-proxy-zwei', label: 'Cors Proxy By Zwei' },
     {
       value: 'cmliussss-cdn-tencent',
-      label: '豆瓣 CDN By CMLiussss（腾讯云）',
+      label: '豆瓣 CDN By CM腾讯云',
     },
-    { value: 'cmliussss-cdn-ali', label: '豆瓣 CDN By CMLiussss（阿里云）' },
+    { value: 'cmliussss-cdn-ali', label: '豆瓣 CDN By CM阿里云' },
     { value: 'custom', label: '自定义代理' },
   ];
 
-  // 豆瓣图片代理选项
+  // 豆瓣图片代理選项
   const doubanImageProxyTypeOptions = [
-    { value: 'direct', label: '直连（浏览器直接请求豆瓣）' },
-    { value: 'server', label: '服务器代理（由服务器代理请求豆瓣）' },
-    { value: 'img3', label: '豆瓣官方精品 CDN（阿里云）' },
+    { value: 'direct', label: '直連（瀏覽器-豆瓣）' },
+    { value: 'server', label: '代理' },
+    { value: 'img3', label: '阿里雲精品CDN' },
     {
       value: 'cmliussss-cdn-tencent',
-      label: '豆瓣 CDN By CMLiussss（腾讯云）',
+      label: '豆瓣 CDN By CM腾讯',
     },
-    { value: 'cmliussss-cdn-ali', label: '豆瓣 CDN By CMLiussss（阿里云）' },
+    { value: 'cmliussss-cdn-ali', label: '豆瓣 CDN By CM阿里' },
     { value: 'custom', label: '自定义代理' },
   ];
 
@@ -3510,7 +3510,7 @@ const SiteConfigComponent = ({ config, refreshConfig }: { config: AdminConfig | 
     }));
   };
 
-  // 保存站点配置
+  // 保存站點配置
   const handleSave = async () => {
     await withLoading('saveSiteConfig', async () => {
       try {
@@ -3537,19 +3537,19 @@ const SiteConfigComponent = ({ config, refreshConfig }: { config: AdminConfig | 
   if (!config) {
     return (
       <div className='text-center text-gray-500 dark:text-gray-400'>
-        加载中...
+        加載中...
       </div>
     );
   }
 
   return (
     <div className='space-y-6'>
-      {/* 站点名称 */}
+      {/* 站点名稱 */}
       <div>
         <label
           className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
         >
-          站点名称
+          站点名稱
         </label>
         <input
           type='text'
@@ -3590,7 +3590,7 @@ const SiteConfigComponent = ({ config, refreshConfig }: { config: AdminConfig | 
             豆瓣数据代理
           </label>
           <div className='relative' data-dropdown='douban-datasource'>
-            {/* 自定义下拉选择框 */}
+            {/* 自定义下拉選擇框 */}
             <button
               type='button'
               onClick={() => setIsDoubanDropdownOpen(!isDoubanDropdownOpen)}
@@ -3611,7 +3611,7 @@ const SiteConfigComponent = ({ config, refreshConfig }: { config: AdminConfig | 
               />
             </div>
 
-            {/* 下拉选项列表 */}
+            {/* 下拉選项列表 */}
             {isDoubanDropdownOpen && (
               <div className='absolute z-50 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg max-h-60 overflow-auto'>
                 {doubanDataSourceOptions.map((option) => (
@@ -3637,7 +3637,7 @@ const SiteConfigComponent = ({ config, refreshConfig }: { config: AdminConfig | 
             )}
           </div>
           <p className='mt-1 text-xs text-gray-500 dark:text-gray-400'>
-            选择获取豆瓣数据的方式
+            選擇获取豆瓣数据的方式
           </p>
 
           {/* 感谢信息 */}
@@ -3662,7 +3662,7 @@ const SiteConfigComponent = ({ config, refreshConfig }: { config: AdminConfig | 
           )}
         </div>
 
-        {/* 豆瓣代理地址设置 - 仅在选择自定义代理时显示 */}
+        {/* 豆瓣代理地址设置 - 仅在選擇自定义代理时显示 */}
         {siteSettings.DoubanProxyType === 'custom' && (
           <div>
             <label
@@ -3698,7 +3698,7 @@ const SiteConfigComponent = ({ config, refreshConfig }: { config: AdminConfig | 
             豆瓣图片代理
           </label>
           <div className='relative' data-dropdown='douban-image-proxy'>
-            {/* 自定义下拉选择框 */}
+            {/* 自定义下拉選擇框 */}
             <button
               type='button'
               onClick={() =>
@@ -3723,7 +3723,7 @@ const SiteConfigComponent = ({ config, refreshConfig }: { config: AdminConfig | 
               />
             </div>
 
-            {/* 下拉选项列表 */}
+            {/* 下拉選项列表 */}
             {isDoubanImageProxyDropdownOpen && (
               <div className='absolute z-50 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg max-h-60 overflow-auto'>
                 {doubanImageProxyTypeOptions.map((option) => (
@@ -3749,7 +3749,7 @@ const SiteConfigComponent = ({ config, refreshConfig }: { config: AdminConfig | 
             )}
           </div>
           <p className='mt-1 text-xs text-gray-500 dark:text-gray-400'>
-            选择获取豆瓣图片的方式
+            選擇获取豆瓣图片的方式
           </p>
 
           {/* 感谢信息 */}
@@ -3774,7 +3774,7 @@ const SiteConfigComponent = ({ config, refreshConfig }: { config: AdminConfig | 
           )}
         </div>
 
-        {/* 豆瓣代理地址设置 - 仅在选择自定义代理时显示 */}
+        {/* 豆瓣代理地址设置 - 仅在選擇自定义代理时显示 */}
         {siteSettings.DoubanImageProxyType === 'custom' && (
           <div>
             <label
@@ -3879,7 +3879,7 @@ const SiteConfigComponent = ({ config, refreshConfig }: { config: AdminConfig | 
           <label
             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
-            启用流式搜索
+            啟用流式搜索
           </label>
           <button
             type='button'
@@ -3903,7 +3903,7 @@ const SiteConfigComponent = ({ config, refreshConfig }: { config: AdminConfig | 
           </button>
         </div>
         <p className='mt-1 text-xs text-gray-500 dark:text-gray-400'>
-          启用后搜索结果将实时流式返回，提升用户体验。
+          啟用后搜索结果将实时流式返回，提升用户体验。
         </p>
       </div>
 
@@ -3996,13 +3996,13 @@ const LiveSourceConfig = ({
 
       if (!resp.ok) {
         const data = await resp.json().catch(() => ({}));
-        throw new Error(data.error || `操作失败: ${resp.status}`);
+        throw new Error(data.error || `操作失敗: ${resp.status}`);
       }
 
       // 成功后刷新配置
       await refreshConfig();
     } catch (err) {
-      showError(err instanceof Error ? err.message : '操作失败', showAlert);
+      showError(err instanceof Error ? err.message : '操作失敗', showAlert);
       throw err; // 向上抛出方便调用处判断
     }
   };
@@ -4012,13 +4012,13 @@ const LiveSourceConfig = ({
     if (!target) return;
     const action = target.disabled ? 'enable' : 'disable';
     withLoading(`toggleLiveSource_${key}`, () => callLiveSourceApi({ action, key })).catch(() => {
-      console.error('操作失败', action, key);
+      console.error('操作失敗', action, key);
     });
   };
 
   const handleDelete = (key: string) => {
     withLoading(`deleteLiveSource_${key}`, () => callLiveSourceApi({ action: 'delete', key })).catch(() => {
-      console.error('操作失败', 'delete', key);
+      console.error('操作失敗', 'delete', key);
     });
   };
 
@@ -4073,7 +4073,7 @@ const LiveSourceConfig = ({
       });
       setShowAddForm(false);
     }).catch(() => {
-      console.error('操作失败', 'add', newLiveSource);
+      console.error('操作失敗', 'add', newLiveSource);
     });
   };
 
@@ -4090,7 +4090,7 @@ const LiveSourceConfig = ({
       });
       setEditingLiveSource(null);
     }).catch(() => {
-      console.error('操作失败', 'edit', editingLiveSource);
+      console.error('操作失敗', 'edit', editingLiveSource);
     });
   };
 
@@ -4114,7 +4114,7 @@ const LiveSourceConfig = ({
         setOrderChanged(false);
       })
       .catch(() => {
-        console.error('操作失败', 'sort', order);
+        console.error('操作失敗', 'sort', order);
       });
   };
 
@@ -4176,7 +4176,7 @@ const LiveSourceConfig = ({
               : 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300'
               }`}
           >
-            {!liveSource.disabled ? '启用中' : '已禁用'}
+            {!liveSource.disabled ? '啟用中' : '已禁用'}
           </span>
         </td>
         <td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2'>
@@ -4188,7 +4188,7 @@ const LiveSourceConfig = ({
               : buttonStyles.roundedSuccess
               } transition-colors ${isLoading(`toggleLiveSource_${liveSource.key}`) ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
-            {!liveSource.disabled ? '禁用' : '启用'}
+            {!liveSource.disabled ? '禁用' : '啟用'}
           </button>
           {liveSource.from !== 'config' && (
             <>
@@ -4216,7 +4216,7 @@ const LiveSourceConfig = ({
   if (!config) {
     return (
       <div className='text-center text-gray-500 dark:text-gray-400'>
-        加载中...
+        加載中...
       </div>
     );
   }
@@ -4253,7 +4253,7 @@ const LiveSourceConfig = ({
           <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
             <input
               type='text'
-              placeholder='名称'
+              placeholder='名稱'
               value={newLiveSource.name}
               onChange={(e) =>
                 setNewLiveSource((prev) => ({ ...prev, name: e.target.value }))
@@ -4280,7 +4280,7 @@ const LiveSourceConfig = ({
             />
             <input
               type='text'
-              placeholder='节目单地址（选填）'
+              placeholder='节目单地址（選填）'
               value={newLiveSource.epg}
               onChange={(e) =>
                 setNewLiveSource((prev) => ({ ...prev, epg: e.target.value }))
@@ -4289,7 +4289,7 @@ const LiveSourceConfig = ({
             />
             <input
               type='text'
-              placeholder='自定义 UA（选填）'
+              placeholder='自定义 UA（選填）'
               value={newLiveSource.ua}
               onChange={(e) =>
                 setNewLiveSource((prev) => ({ ...prev, ua: e.target.value }))
@@ -4327,7 +4327,7 @@ const LiveSourceConfig = ({
           <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
             <div>
               <label className='block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1'>
-                名称
+                名稱
               </label>
               <input
                 type='text'
@@ -4364,7 +4364,7 @@ const LiveSourceConfig = ({
             </div>
             <div>
               <label className='block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1'>
-                节目单地址（选填）
+                节目单地址（選填）
               </label>
               <input
                 type='text'
@@ -4377,7 +4377,7 @@ const LiveSourceConfig = ({
             </div>
             <div>
               <label className='block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1'>
-                自定义 UA（选填）
+                自定义 UA（選填）
               </label>
               <input
                 type='text'
@@ -4414,7 +4414,7 @@ const LiveSourceConfig = ({
             <tr>
               <th className='w-8' />
               <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider'>
-                名称
+                名稱
               </th>
               <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider'>
                 Key
@@ -4507,7 +4507,7 @@ function AdminPageClient() {
     dataMigration: false,
   });
 
-  // 获取管理员配置
+  // 获取管理員配置
   // showLoading 用于控制是否在请求期间显示整体加载骨架。
   const fetchConfig = useCallback(async (showLoading = false) => {
     try {
@@ -4577,7 +4577,7 @@ function AdminPageClient() {
         <div className='px-2 sm:px-10 py-4 sm:py-8'>
           <div className='max-w-[95%] mx-auto'>
             <h1 className='text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8'>
-              管理员设置
+              管理員设置
             </h1>
             <div className='space-y-4'>
               {Array.from({ length: 3 }).map((_, index) => (
@@ -4605,7 +4605,7 @@ function AdminPageClient() {
           {/* 标题 + 重置配置按钮 */}
           <div className='flex items-center gap-2 mb-8'>
             <h1 className='text-2xl font-bold text-gray-900 dark:text-gray-100'>
-              管理员设置
+              管理員设置
             </h1>
             {config && role === 'owner' && (
               <button
@@ -4634,9 +4634,9 @@ function AdminPageClient() {
             </CollapsibleTab>
           )}
 
-          {/* 站点配置标签 */}
+          {/* 站點配置标签 */}
           <CollapsibleTab
-            title='站点配置'
+            title='站點配置'
             icon={
               <Settings
                 size={20}
@@ -4666,9 +4666,9 @@ function AdminPageClient() {
               />
             </CollapsibleTab>
 
-            {/* 视频源配置标签 */}
+            {/* 視頻源配置标签 */}
             <CollapsibleTab
-              title='视频源配置'
+              title='視頻源配置'
               icon={
                 <Video size={20} className='text-gray-600 dark:text-gray-400' />
               }
@@ -4766,7 +4766,7 @@ function AdminPageClient() {
                     </span>
                   </div>
                   <p className='text-sm text-yellow-700 dark:text-yellow-400'>
-                    此操作将重置用户封禁和管理员设置、自定义视频源，站点配置将重置为默认值，是否继续？
+                    此操作将重置用户封禁和管理員设置、自定义視頻源，站點配置将重置为默认值，是否继续？
                   </p>
                 </div>
               </div>
