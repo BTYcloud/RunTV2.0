@@ -174,8 +174,8 @@ function HomeClient() {
         <div className='mb-8 flex justify-center'>
           <CapsuleSwitch
             options={[
-              { label: '首页', value: 'home' },
-              { label: '收藏夹', value: 'favorites' },
+              { label: '首頁', value: 'home' },
+              { label: '收藏', value: 'favorites' },
             ]}
             active={activeTab}
             onChange={(value) => setActiveTab(value as 'home' | 'favorites')}
@@ -188,7 +188,7 @@ function HomeClient() {
             <section className='mb-8'>
               <div className='mb-4 flex items-center justify-between'>
                 <h2 className='text-xl font-bold text-gray-800 dark:text-gray-200'>
-                  我的收藏
+                  我的珍藏寶貝
                 </h2>
                 {favoriteItems.length > 0 && (
                   <button
@@ -198,7 +198,7 @@ function HomeClient() {
                       setFavoriteItems([]);
                     }}
                   >
-                    清空
+                    一鍵清空
                   </button>
                 )}
               </div>
@@ -215,13 +215,13 @@ function HomeClient() {
                 ))}
                 {favoriteItems.length === 0 && (
                   <div className='col-span-full text-center text-gray-500 py-8 dark:text-gray-400'>
-                    暂无收藏内容
+                    你收藏了個der
                   </div>
                 )}
               </div>
             </section>
           ) : (
-            // 首页视图
+            // 首頁视图
             <>
               {/* 继续观看 */}
               <ContinueWatching />
@@ -230,7 +230,7 @@ function HomeClient() {
               <section className='mb-8'>
                 <div className='mb-4 flex items-center justify-between'>
                   <h2 className='text-xl font-bold text-gray-800 dark:text-gray-200'>
-                    热门电影
+                    熱門電影
                   </h2>
                   <Link
                     href='/douban?type=movie'
@@ -278,7 +278,7 @@ function HomeClient() {
               <section className='mb-8'>
                 <div className='mb-4 flex items-center justify-between'>
                   <h2 className='text-xl font-bold text-gray-800 dark:text-gray-200'>
-                    热门剧集
+                    熱門劇集
                   </h2>
                   <Link
                     href='/douban?type=tv'
@@ -325,7 +325,7 @@ function HomeClient() {
               <section className='mb-8'>
                 <div className='mb-4 flex items-center justify-between'>
                   <h2 className='text-xl font-bold text-gray-800 dark:text-gray-200'>
-                    新番放送
+                    新番推送
                   </h2>
                   <Link
                     href='/douban?type=anime'
@@ -400,7 +400,7 @@ function HomeClient() {
               <section className='mb-8'>
                 <div className='mb-4 flex items-center justify-between'>
                   <h2 className='text-xl font-bold text-gray-800 dark:text-gray-200'>
-                    热门综艺
+                    熱門綜藝
                   </h2>
                   <Link
                     href='/douban?type=show'
@@ -505,7 +505,7 @@ function HomeClient() {
               onClick={() => handleCloseAnnouncement(announcement)}
               className='w-full rounded-lg bg-gradient-to-r from-green-600 to-green-700 px-4 py-3 text-white font-medium shadow-md hover:shadow-lg hover:from-green-700 hover:to-green-800 dark:from-green-600 dark:to-green-700 dark:hover:from-green-700 dark:hover:to-green-800 transition-all duration-300 transform hover:-translate-y-0.5'
             >
-              我知道了
+              知道辣！
             </button>
           </div>
         </div>
