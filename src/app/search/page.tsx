@@ -651,7 +651,7 @@ function SearchPageClient() {
                 value={searchQuery}
                 onChange={handleInputChange}
                 onFocus={handleInputFocus}
-                placeholder='搜索电影、电视剧...'
+                placeholder='搜索影片guanjianci...'
                 autoComplete="off"
                 className='w-full h-12 rounded-lg bg-gray-50/80 py-3 pl-10 pr-12 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:bg-white border border-gray-200/50 shadow-sm dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-500 dark:focus:bg-gray-700 dark:border-gray-700'
               />
@@ -666,7 +666,7 @@ function SearchPageClient() {
                     document.getElementById('searchInput')?.focus();
                   }}
                   className='absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors dark:text-gray-500 dark:hover:text-gray-300'
-                  aria-label='清除搜索内容'
+                  aria-label='抹除我的犯罪記錄'
                 >
                   <X className='h-5 w-5' />
                 </button>
@@ -829,7 +829,7 @@ function SearchPageClient() {
             // 搜索历史
             <section className='mb-12'>
               <h2 className='mb-4 text-xl font-bold text-gray-800 text-left dark:text-gray-200'>
-                搜索历史
+                搜索歷史
                 {searchHistory.length > 0 && (
                   <button
                     onClick={() => {
@@ -837,7 +837,7 @@ function SearchPageClient() {
                     }}
                     className='ml-3 text-sm text-gray-500 hover:text-red-500 transition-colors dark:text-gray-400 dark:hover:text-red-500'
                   >
-                    清空
+                    抹除
                   </button>
                 )}
               </h2>
@@ -857,7 +857,7 @@ function SearchPageClient() {
                     </button>
                     {/* 删除按钮 */}
                     <button
-                      aria-label='删除搜索历史'
+                      aria-label='抹除所有紀錄啦'
                       onClick={(e) => {
                         e.stopPropagation();
                         e.preventDefault();
@@ -882,7 +882,7 @@ function SearchPageClient() {
           ? 'opacity-100 translate-y-0 pointer-events-auto'
           : 'opacity-0 translate-y-4 pointer-events-none'
           }`}
-        aria-label='返回顶部'
+        aria-label='返回頂部'
       >
         <ChevronUp className='w-6 h-6 transition-transform group-hover:scale-110' />
       </button>
