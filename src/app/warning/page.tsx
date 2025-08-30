@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '安全警告 - MoonTV',
-  description: '站点安全配置警告',
+  title: '安全警告',
+  description: '站點安全配置警告',
 };
 
 export default function WarningPage() {
@@ -31,7 +31,7 @@ export default function WarningPage() {
         {/* 标题 */}
         <div className='text-center mb-6 sm:mb-8'>
           <h1 className='text-2xl sm:text-3xl font-bold text-gray-900 mb-2'>
-            安全合规配置警告
+            安全合規警告
           </h1>
           <div className='w-12 sm:w-16 h-1 bg-red-500 mx-auto rounded-full'></div>
         </div>
@@ -40,10 +40,10 @@ export default function WarningPage() {
         <div className='space-y-4 sm:space-y-6 text-gray-700'>
           <div className='bg-red-50 border-l-4 border-red-500 p-3 sm:p-4 rounded-r-lg'>
             <p className='text-base sm:text-lg font-semibold text-red-800 mb-2'>
-              ⚠️ 安全风险提示
+              ⚠️ 安全風險提醒
             </p>
             <p className='text-sm sm:text-base text-red-700'>
-              检测到您的站点未配置访问控制，存在潜在的安全风险和法律合规问题。
+              未配置訪問權限 小心出事啊
             </p>
           </div>
 
