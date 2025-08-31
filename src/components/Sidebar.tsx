@@ -127,22 +127,22 @@ const Sidebar = ({ onToggle, activePath = '/' }: SidebarProps) => {
   const [menuItems, setMenuItems] = useState([
     {
       icon: Film,
-      label: '电影',
+      label: '電影',
       href: '/douban?type=movie',
     },
     {
       icon: Tv,
-      label: '剧集',
+      label: '劇集',
       href: '/douban?type=tv',
     },
     {
       icon: Cat,
-      label: '动漫',
+      label: '動漫',
       href: '/douban?type=anime',
     },
     {
       icon: Clover,
-      label: '综艺',
+      label: '綜藝',
       href: '/douban?type=show',
     },
     {
@@ -159,7 +159,7 @@ const Sidebar = ({ onToggle, activePath = '/' }: SidebarProps) => {
         ...prevItems,
         {
           icon: Star,
-          label: '自定义',
+          label: '自定義',
           href: '/douban?type=custom',
         },
       ]);
@@ -213,7 +213,7 @@ const Sidebar = ({ onToggle, activePath = '/' }: SidebarProps) => {
                 </div>
                 {!isCollapsed && (
                   <span className='whitespace-nowrap transition-opacity duration-200 opacity-100'>
-                    首页
+                    首頁
                   </span>
                 )}
               </Link>
