@@ -70,14 +70,14 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
     }
   }, [isOpen]);
 
-  // 获取远程变更日志
+  // 獲取远程变更日志
   useEffect(() => {
     if (isOpen) {
       fetchRemoteChangelog();
     }
   }, [isOpen]);
 
-  // 获取远程变更日志
+  // 獲取远程变更日志
   const fetchRemoteChangelog = async () => {
     try {
       const response = await fetch(
@@ -98,13 +98,13 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
         }
       } else {
         console.error(
-          '获取远程变更日志失败:',
+          '獲取遠程變更日誌失敗:',
           response.status,
           response.statusText
         );
       }
     } catch (error) {
-      console.error('获取远程变更日志失败:', error);
+      console.error('獲取遠程變更日誌失敗:', error);
     }
   };
 
@@ -140,7 +140,7 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
         continue;
       }
 
-      // 如果遇到下一个版本或到达文件末尾，停止处理当前版本
+      // 如果遇到下一个版本或到达文件末尾，停止处理當前版本
       if (inVersionContent && currentVersion) {
         // 匹配章节标题
         if (trimmedLine === '### Added') {
@@ -202,7 +202,7 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
             </h4>
             {isCurrentVersion && (
               <span className='px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 rounded-full'>
-                当前版本
+                當前版本
               </span>
             )}
             {isUpdate && (
@@ -243,7 +243,7 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
             <div>
               <h5 className='text-sm font-medium text-blue-700 dark:text-blue-400 mb-2 flex items-center gap-1'>
                 <RefreshCw className='w-4 h-4' />
-                功能改进
+                功能改進
               </h5>
               <ul className='space-y-1'>
                 {entry.changed.map((item, index) => (
@@ -263,7 +263,7 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
             <div>
               <h5 className='text-sm font-medium text-purple-700 dark:text-purple-400 mb-2 flex items-center gap-1'>
                 <Bug className='w-4 h-4' />
-                问题修复
+                問題修復
               </h5>
               <ul className='space-y-1'>
                 {entry.fixed.map((item, index) => (
@@ -327,7 +327,7 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
               {hasUpdate && (
                 <span className='px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300 rounded-full flex items-center gap-1'>
                   <Download className='w-3 h-3 sm:w-4 sm:h-4' />
-                  <span className='hidden sm:inline'>有新版本可用</span>
+                  <span className='hidden sm:inline'>可以更新啦</span>
                   <span className='sm:hidden'>可更新</span>
                 </span>
               )}
@@ -336,7 +336,7 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
           <button
             onClick={onClose}
             className='w-6 h-6 sm:w-8 sm:h-8 p-1 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'
-            aria-label='关闭'
+            aria-label='關閉'
           >
             <X className='w-full h-full' />
           </button>
@@ -355,7 +355,7 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
                     </div>
                     <div className='min-w-0 flex-1'>
                       <h4 className='text-sm sm:text-base font-semibold text-yellow-800 dark:text-yellow-200'>
-                        发现新版本
+                        發現新版本
                       </h4>
                       <p className='text-xs sm:text-sm text-yellow-700 dark:text-yellow-300 break-all'>
                         v{CURRENT_VERSION} → v{latestVersion}
@@ -375,7 +375,7 @@ export const VersionPanel: React.FC<VersionPanelProps> = ({
               </div>
             )}
 
-            {/* 当前为最新版本信息 */}
+            {/* 當前为最新版本信息 */}
             {!hasUpdate && (
               <div className='bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3 sm:p-4'>
                 <div className='flex flex-col gap-3'>
