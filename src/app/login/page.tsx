@@ -35,7 +35,7 @@ function VersionDisplay() {
   return (
     <button
       onClick={() =>
-        window.open('https://github.com/MoonTechLab/LunaTV', '_blank')
+        window.open('https://zh.wikipedia.org/zh-tw/%E5%85%AD%E5%9B%9B%E4%BA%8B%E4%BB%B6', '_blank')
       }
       className='absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 transition-colors cursor-pointer'
     >
