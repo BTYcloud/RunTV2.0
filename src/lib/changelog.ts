@@ -10,6 +10,13 @@ export interface ChangelogEntry {
 }
 
 export const changelog: ChangelogEntry[] = [
+    {
+    version: "2.6.6",
+    date: "2025-09-09",
+    fixed: [
+      "修了個寂寞"
+    ]
+  },
   {
     version: "2.6.4",
     date: "2025-09-03",
